@@ -11,10 +11,16 @@ export function click(){
         button.addEventListener("click",() => { //☚のボタンを押したら以下のことをする
             count++; //変数countに1プラス
             counted.textContent = `${count}回`; //countの回数を表示
-            if (count==100){ 
+            if (count==10){ //10回クリックに変えた
                 drawbutton.style.visibility ="visible"; //おみくじ引くボタンを表示する
+                
             }
         });
+        drawbutton.addEventListener("click",() =>{ //おみくじを引いたら、、
+            drawbutton.style.visibility = "hidden";
+            count -= 10;
+            counted.textContent = `${count}回`;
+        } )
     }
 }
 
