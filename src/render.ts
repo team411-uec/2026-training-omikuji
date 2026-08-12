@@ -2,6 +2,8 @@
 // 状態を受け取って画面(DOM)に表示するだけを担当する。
 // おみくじを引くロジックは omikuji.ts、ボタンと処理の連携は main.ts が持つ。
 
+// なおちゃんみえますか
+
 import type { OmikujiResult } from "./omikuji";
 
 // ステップ1（最初の課題）: この関数を実装する。
