@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>おみくじアプリ</title>
+    <title>ガチャアプリ</title>
 
     <!--
       最小限の見た目だけ整えている（Tailwind は使わない）。
@@ -31,13 +31,59 @@
         padding: 8px 16px;
         font-size: 16px;
         cursor: pointer;
+        background-color: rgb(186, 176, 232);
+        border-color: rgb(186, 176, 232);
+        
       }
+
+      .omikuji-controls{
+        text-align: center;
+      }
+
+      h1{
+        border-bottom: solid rgb(153, 139, 227);
+        text-align: center;
+      }
+
+      .play{
+        border-left: solid rgb(153, 139, 227) 4px;
+        padding: 0px 5px;
+      }
+
+      h2{
+        font-size: 40px;
+        text-align: center;
+      }
+
+      .omikuji-history{
+        text-align: center;
+        padding: 0px 10px ;
+      }
+
+      h3{
+        font-size: 25px;
+        text-align: center;
+        margin: 30px 0px 0px;
+      }
+
+      one,two,three,four,five,six,seven,eight,nine{
+        margin: 0px 20px;
+        font-size: 20px;
+        border: solid rgb(186, 176, 232) 3px;
+        border-radius: 5px;
+        padding: 2px 20px;
+      }
+
+      
+    
+
     </style>
   </head>
 
   <body>
-    <h1>おみくじアプリ</h1>
-    <p>「おみくじを引く」ボタンを押してみましょう。</p>
+    <h1>ガチャアプリ</h1>
+    <div class="play">遊び方</div>
+    <div class="test">クリックボタンを100回クリックするごとにガチャが引けます。ガチャの中身は全9種類！</div>
 
     <!--
       結果を表示する場所。render.ts が id="result" を取得して書き換える。
@@ -47,7 +93,16 @@
 
     <!-- 操作ボタン。クリック時の処理は main.ts で結びつけている。 -->
     <div class="omikuji-controls">
-      <button id="draw-button">おみくじを引く</button>
+      <!--　ようこ
+      countedは回数表示するやつ。
+      clickcheck-buttonは押すボタン。
+      srcフォルダのclick.tsってファイルにこの動きを入れるプログラム組んだ。
+      -->
+      <h2 id="counted">0回</h2>
+      <script type="module" src="/src/click.ts"></script>
+      <button id="clickcheck-button">クリック</button>
+      <script type="module" src="/src/click.ts"></script>
+      <button id="draw-button">ガチャを引く</button>
       <button id="reset-button">リセット</button>
     </div>
 
@@ -56,10 +111,32 @@
         - 残りくじ枚数を出す → <div id="remaining">
         - 引いた履歴を出す   → <ul id="history"> に <li> を足していく
     -->
-    <div id="remaining" class="omikuji-remaining"></div>
-    <ul id="history" class="omikuji-history"></ul>
+
+    <h3>りれき</h3>
+
+    <div id="remaining" class="omikuji-remaining">
+    <div id="history" class="omikuji-history">
+      
+      <p>
+      <one>結果１</one>
+      <two>結果２</two>
+      <three>結果３</three>
+      </p>
+      <p>
+      <four>結果４</four>
+      <five>結果５</five>
+      <six>結果６</six>
+      </p>
+      <p>
+      <seven>結果７</seven>
+      <eight>結果８</eight>
+      <nine>結果９</nine>
+      </p>
+    </div>
+    </div>
 
     <!-- TypeScript を読み込む（Vite が変換する）。 -->
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
+
