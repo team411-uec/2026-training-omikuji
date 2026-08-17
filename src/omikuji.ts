@@ -5,22 +5,26 @@
 
 // おみくじの結果を表す型（Union Type）。
 // この6つの文字列以外は使えないので、打ち間違い（例: "第吉"）を防げる。
-export type OmikujiResult = "大吉" | "中吉" | "小吉" | "吉" | "末吉" | "凶";
+export type OmikujiResult = "結果１" | "結果２" | "結果３" | "結果４" | "結果５" | "結果６" | "結果７" | "結果８" | "結果９" ;
 
 // 各結果を何枚ずつ箱に入れるかの比率。数値は自由に変えてよい。
 export const omikujiRatios: Record<OmikujiResult, number> = {
-  大吉: 5,
-  中吉: 15,
-  小吉: 20,
-  吉: 30,
-  末吉: 20,
-  凶: 10,
+  結果１: 5,
+  結果２: 15,
+  結果３: 20,
+  結果４: 30,
+  結果５: 20,
+  結果６: 10,
+  結果７: 10,
+  結果８: 10,
+  結果９: 10,
 };
 
 // 箱の中身（引けるくじ）。このファイルの中だけで使う。
 // export していないので外部からは直接触れず、下の関数を通して操作する。
 let tickets: OmikujiResult[] = [];
-
+export let counter = new Array(9).fill(0)
+//なんのおみくじを何回引いたか保存するための配列
 // 箱の中身を omikujiRatios の比率どおりに入れ直す。
 export function resetOmikuji(): void {
   tickets = [];
@@ -46,7 +50,8 @@ export function drawOmikuji(): OmikujiResult | null {
   // splice は抜き出した要素の配列を返すので、その 0 番目を取り出す。
   const drawnTicket = tickets.splice(randomIdx, 1)[0];
   return drawnTicket;
+  counter[randomIdx]++
 }
-
+//counterは引いた数を保存する手目のもの
 // 拡張ポイント（ステップ2以降）。必要になったら足す。
 //  - 残りくじ枚数を出す: tickets.length を返す関数をこのファイルに足す（tickets は外から読めない）。
