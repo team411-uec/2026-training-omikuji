@@ -23,7 +23,9 @@ export const omikujiRatios: Record<OmikujiResult, number> = {
 // 箱の中身（引けるくじ）。このファイルの中だけで使う。
 // export していないので外部からは直接触れず、下の関数を通して操作する。
 let tickets: OmikujiResult[] = [];
-export let counter = new Array(9).fill(0)
+let counter = new Array(9).fill(0)
+export let cheker = ["結果１", "結果２", "結果３", "結果４", "結果５", "結果６", "結果７", "結果８", "結果９"]
+
 //なんのおみくじを何回引いたか保存するための配列
 // 箱の中身を omikujiRatios の比率どおりに入れ直す。
 export function resetOmikuji(): void {
@@ -47,11 +49,18 @@ export function drawOmikuji(): OmikujiResult | null {
   }
 
   const randomIdx = Math.floor(Math.random() * tickets.length);
-  // splice は抜き出した要素の配列を返すので、その 0 番目を取り出す。
+  // splice は抜き出した要素の配列を返すので、その 0番目を取り出す。
   const drawnTicket = tickets.splice(randomIdx, 1)[0];
+  //何回引いたかを記録する処理
+  for(let i = 0; i < cheker.length; i++){
+    if(drawnTicket == cheker[i]){
+      ++counter[i];
+    }
+  }
   return drawnTicket;
-  counter[randomIdx]++
+  
 }
+export {counter}
 //counterは引いた数を保存する手目のもの
 // 拡張ポイント（ステップ2以降）。必要になったら足す。
 //  - 残りくじ枚数を出す: tickets.length を返す関数をこのファイルに足す（tickets は外から読めない）。

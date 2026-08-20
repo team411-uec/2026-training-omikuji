@@ -29,46 +29,6 @@ export function renderResult(result: OmikujiResult | null): void {
 }
 
 
-  let s1 = document.getElementById("1")
-  let s2 = document.getElementById("2")
-  let s3 = document.getElementById("3")
-  let s4 = document.getElementById("4")
-  let s5 = document.getElementById("5")
-  let s6 = document.getElementById("6")
-  let s7 = document.getElementById("7")
-  let s8 = document.getElementById("8")
-  let s9 = document.getElementById("9")
-
-  let n1 = document.getElementById("one")
-  let n2 = document.getElementById("two")
-  let n3 = document.getElementById("three")
-  let n4 = document.getElementById("four")
-  let n5 = document.getElementById("five")
-  let n6 = document.getElementById("six")
-  let n7 = document.getElementById("seven")
-  let n8 = document.getElementById("eight")
-  let n9 = document.getElementById("nine")
-
-  seve_result(s1, n1, counter[0])
-  seve_result(s2, n2, counter[1])
-  seve_result(s3, n3, counter[2])
-  seve_result(s4, n4, counter[3])
-  seve_result(s5, n5, counter[4])
-  seve_result(s6, n6, counter[5])
-  seve_result(s7, n7, counter[6])
-  seve_result(s8, n8, counter[7])
-  seve_result(s9, n9, counter[8])
-
-export function seve_result(textnumber: any, textnumber2: any, counter: number){
-  if(counter == 0){
-    textnumber.style.opacity = "0"
-  }
-  if(counter > 0){
-    textnumber2.textContent ="${counter}"
-  }
-}
-
-
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
 //  - 履歴をリスト表示する: document.createElement で <li> を作り、<ul id="history"> に足す関数。
 //  - 残りくじ枚数を表示する: omikuji.ts に残数を返す関数を足したうえで表示用の関数を足す。
