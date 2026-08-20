@@ -51,6 +51,10 @@
       <button id="reset-button">リセット</button>
     </div>
 
+    <div class="omikuji-controls">
+      <button id="upgrade-button"></button>
+    </div>
+
     <!--
       拡張ポイント（ステップ2以降で使う空きエリア）。使わないうちは消してもよい。
         - 残りくじ枚数を出す → <div id="remaining">
@@ -59,6 +63,9 @@
     <div id="remaining" class="omikuji-remaining"></div>
     <ul id="history" class="omikuji-history"></ul>
 
+    <div id="click-progress" class="omikuji-remaining"></div>
+
+    <div id="tokens" class="omikuji-remaining"></div>
     <!-- TypeScript を読み込む（Vite が変換する）。 -->
     <script type="module" src="/src/main.ts"></script>
   </body>
