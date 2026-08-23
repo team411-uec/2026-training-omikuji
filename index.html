@@ -32,78 +32,6 @@
         font-size: 16px;
         cursor: pointer;
       }
-      #draw-button {
-        background-color: #ff5623;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 8px 16px;
-        font-size: 16px;
-        cursor: pointer;
-        position: relative;
-
-        /* 軽い立体感（2pxの影） */
-        box-shadow: 0 2px 0 #b33a1c;
-      }
-
-      /* 修正：:hover ではなく、JSでクラスがついた瞬間だけ実行する */
-      #draw-button.active-dip {
-        animation: dipAndReturn-draw 0.2s ease;
-      }
-      
-      /* アニメーションの流れ（内容はそのまま） */
-      @keyframes dipAndReturn-draw {
-        0% {
-          transform: translateY(0);
-          box-shadow: 0 2px 0 #9b3414;
-        }
-        50% {
-          transform: translateY(2px);
-          box-shadow: 0 0 0 #9b3414;
-        }
-        100% {
-          transform: translateY(0);
-          box-shadow: 0 2px 0 #9b3414;
-        }
-      }
-
-      #reset-button {
-        /* 通常時の見た目 */
-        background-color: #3561f3;
-        color: #fff;
-        padding: 8px 16px;
-        font-size: 16px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        position: relative;
-        
-        /* 軽い立体感（2pxの影） */
-        box-shadow: 0 2px 0 #14257c;
-      }
-
-      /* 修正：:hover ではなく、JSでクラスがついた瞬間だけ実行する */
-      #reset-button.active-dip {
-        animation: dipAndReturn-reset 0.2s ease;
-      }
-
-      /* アニメーションの流れ（内容はそのまま） */
-      @keyframes dipAndReturn-reset {
-        0% {
-          transform: translateY(0);
-          box-shadow: 0 2px 0 #14257c;
-        }
-        50% {
-          transform: translateY(2px);
-          box-shadow: 0 0 0 #14257c;
-        }
-        100% {
-          transform: translateY(0);
-          box-shadow: 0 2px 0 #14257c;
-        }
-      }
-
-
     </style>
   </head>
 
@@ -119,8 +47,8 @@
 
     <!-- 操作ボタン。クリック時の処理は main.ts で結びつけている。 -->
     <div class="omikuji-controls">
-      <button id="draw-button" onmousedown="this.classList.add('active-dip'); setTimeout(() => this.classList.remove('active-dip'), 200)">おみくじを引く</button>
-      <button id="reset-button" onmousedown="this.classList.add('active-dip'); setTimeout(() => this.classList.remove('active-dip'), 200)">リセット</button>
+      <button id="draw-button">おみくじを引く</button>
+      <button id="reset-button">リセット</button>
     </div>
 
     <!--
