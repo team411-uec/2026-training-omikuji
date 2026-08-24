@@ -16,8 +16,11 @@ import type { OmikujiResult } from "./omikuji";
 //  - result が null のとき（リセット直後など）は初期メッセージを出す。
 export function renderResult(result: OmikujiResult | null): void {
   // ステップ0 ではコンソールに結果が出るだけ。
-  console.log("引いた結果:", result);
-
+  //console.log("引いた結果:", result);
+  const display = document.getElementById("result");
+  if (display) {
+    display.textContent = result;
+  }
   // TODO（ステップ1）: ここに DOM 操作を書いて、画面に結果を表示する。
 }
 
