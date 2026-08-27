@@ -19,8 +19,67 @@ export function renderResult(result: OmikujiResult | null): void {
   console.log("引いた結果:", result);
 
   // TODO（ステップ1）: ここに DOM 操作を書いて、画面に結果を表示する。
+  const resultElement = document.getElementById("result");
+  if (resultElement) {
+    resultElement.textContent = result === null ? "ここに結果が出ます" : result;
+  }
 }
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
 //  - 履歴をリスト表示する: document.createElement で <li> を作り、<ul id="history"> に足す関数。
 //  - 残りくじ枚数を表示する: omikuji.ts に残数を返す関数を足したうえで表示用の関数を足す。
+
+// クリック進捗（例: "3/10"）を表示する。clickcount.ts の handleClickForDraw の戻り値を
+// そのまま count / requiredClicks として受け取る想定。
+export function renderClickProgress(
+  count: number,
+  requiredClicks: number,
+): void {
+  const progressElement = document.getElementById("click-progress");
+  if (progressElement) {
+    progressElement.textContent = `${count}/${requiredClicks}`;
+  }
+}
+
+// 徳の所持数を表示する。
+export function renderTokens(tokenCount: number): void {
+  const tokensElement = document.getElementById("tokens");
+  if (tokensElement) {
+    tokensElement.textContent = `徳: ${tokenCount}`;
+  }
+}
+
+// アップグレードボタンの文言と押せる/押せない状態を更新する。
+// .disabled を扱うため HTMLButtonElement として型キャストしている。
+export function renderUpgradeButton(cost: number, purchased: boolean): void {
+  const upgradeButton = document.getElementById(
+    "upgrade-button",
+  ) as HTMLButtonElement | null;
+
+  if (upgradeButton) {
+    upgradeButton.textContent = purchased
+      ? "購入済み"
+      : `必要クリック回数を9減らす(${cost} 徳)`;
+    upgradeButton.disabled = purchased;
+  }
+}
+
+// 輪廻転生ボタンの押せる/押せない状態だけを更新する（文言は index.html の固定文言のまま）。
+// おみくじ箱を引き切っているとき（canReincarnate が true）だけ押せる。
+export function renderReincarnateButton(canReincarnate: boolean): void {
+  const reincarnatebutton = document.getElementById(
+    "reincarnate-button",
+  ) as HTMLButtonElement | null;
+
+  if (reincarnatebutton) {
+    reincarnatebutton.disabled = !canReincarnate;
+  }
+}
+
+// 輪廻転生ポイントの所持数を表示する。
+export function renderReincarnationPoints(points: number): void {
+  const pointsElement = document.getElementById("reincarnation-points");
+  if (pointsElement) {
+    pointsElement.textContent = `輪廻転生ポイント: ${points}`;
+  }
+}
