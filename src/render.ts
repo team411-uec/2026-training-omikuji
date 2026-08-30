@@ -2,8 +2,6 @@
 // 状態を受け取って画面(DOM)に表示するだけを担当する。
 // おみくじを引くロジックは omikuji.ts、ボタンと処理の連携は main.ts が持つ。
 
-// なおちゃんみえますか
-
 import type { OmikujiResult } from "./omikuji";
 
 // ステップ1（最初の課題）: この関数を実装する。
@@ -21,8 +19,22 @@ export function renderResult(result: OmikujiResult | null): void {
   console.log("引いた結果:", result);
 
   // TODO（ステップ1）: ここに DOM 操作を書いて、画面に結果を表示する。
+  const resultElement = document.getElementById("result");
+  if (!resultElement) return;
+  if (result === null) {
+    resultElement.textContent = "ここに結果が出ます";
+  } else {
+    resultElement.textContent = result;
+  }
 }
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
 //  - 履歴をリスト表示する: document.createElement で <li> を作り、<ul id="history"> に足す関数。
 //  - 残りくじ枚数を表示する: omikuji.ts に残数を返す関数を足したうえで表示用の関数を足す。
+// 残り枚数を画面に表示する関数
+export function renderRemaining(count: number): void {
+  const remainingElement = document.getElementById("remaining");
+  if (!remainingElement) return;
+
+  remainingElement.textContent = `残り: ${count}枚`;
+}
