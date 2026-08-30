@@ -15,10 +15,33 @@ import type { OmikujiResult } from "./omikuji";
 //  - 要素の中の文字は textContent で書き換えられる。
 //  - result が null のとき（リセット直後など）は初期メッセージを出す。
 export function renderResult(result: OmikujiResult | null): void {
-  // ステップ0 ではコンソールに結果が出るだけ。
-  console.log("引いた結果:", result);
+  const resultElement = document.getElementById("result");
 
-  // TODO（ステップ1）: ここに DOM 操作を書いて、画面に結果を表示する。
+  if (!resultElement) return;
+
+  // リセット時
+  if (result === null) {
+    resultElement.textContent = "おみくじを引いてね！";
+    resultElement.classList.remove("gekiaTsu");
+    return;
+  }
+
+  // 大吉の場合
+  if (result === "大吉") {
+    // 激アツ演出開始
+    resultElement.classList.add("gekiaTsu");
+    resultElement.textContent = "激アツ！！";
+
+    // 1.2秒後に「大吉」に変更
+    setTimeout(() => {
+      resultElement.textContent = "大吉";
+      resultElement.classList.remove("gekiaTsu");
+    }, 1200);
+  } else {
+    // 大吉以外は普通に表示
+    resultElement.textContent = result;
+    resultElement.classList.remove("gekiaTsu");
+  }
 }
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
