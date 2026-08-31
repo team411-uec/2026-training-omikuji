@@ -19,6 +19,19 @@ export function renderResult(result: OmikujiResult | null): void {
   console.log("引いた結果:", result);
 
   // TODO（ステップ1）: ここに DOM 操作を書いて、画面に結果を表示する。
+
+  // id="result" の要素を取得
+  const resultElement = document.getElementById("result");
+
+  // 要素が存在しない場合は何もしない（安全対策）
+  if (!resultElement) return;
+
+  // result の状態に応じて表示テキストを切り替え
+  if (result === null) {
+    resultElement.textContent = "おみくじを引いてね！"; // 初期メッセージ（※画面の元テキストに合わせて調整可）
+  } else {
+    resultElement.textContent = result;
+  }
 }
 
 // 拡張ポイント（ステップ2以降）。必要になったら関数を足す。
